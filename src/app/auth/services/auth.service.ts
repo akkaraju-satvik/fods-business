@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, signInWithPopup, User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -15,6 +16,8 @@ export class AuthService {
   };
 
   errorCode!: string | null;
+
+  authStateSubscription!: Subscription;
 
 
   constructor(public auth: Auth, public router: Router, private http: HttpClient) { }

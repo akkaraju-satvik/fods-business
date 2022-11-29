@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { authState } from '@angular/fire/auth';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -14,12 +14,12 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(route.data['path'] === 'login') {
-      if(this.authService.authData.isLoggedIn) {
+    if (route.data['path'] === 'login') {
+      if (this.authService.authData.isLoggedIn) {
         this.router.navigate(['/home']);
         return false;
       }
-      authState(this.authService.auth).subscribe({
+      this.authService.authStateSubscription = authState(this.authService.auth).subscribe({
         next: (user) => {
           user?.getIdToken().then((token) => {
             if (user && token) {
@@ -35,16 +35,17 @@ export class AuthGuard implements CanActivate {
                 error: (err) => {
                   this.authService.logout();
                 }
-              })
+              });
             }
           });
         },
         error: (error) => {
-
+          console.log(error);
+          this.authService.logout();
         },
       });
     } else {
-      if(!this.authService.authData.isLoggedIn) {
+      if (!this.authService.authData.isLoggedIn) {
         this.router.navigate(['/login']);
         return false;
       }
@@ -52,5 +53,5 @@ export class AuthGuard implements CanActivate {
     }
     return true;
   }
-  
+
 }

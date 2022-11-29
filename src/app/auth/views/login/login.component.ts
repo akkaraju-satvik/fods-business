@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(public authService: AuthService) { }
 
@@ -15,6 +15,10 @@ export class LoginComponent implements OnInit {
 
   loginWithGoogle() {
     this.authService.loginWithGoogle();
+  }
+
+  ngOnDestroy(): void {
+    this.authService.authStateSubscription.unsubscribe();
   }
 
 }
