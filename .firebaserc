@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "project-fods": {
+      "hosting": {
+        "business": [
+          "business-fods"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "project-fods"
+  }
+}
