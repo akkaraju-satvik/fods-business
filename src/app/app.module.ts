@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideMessaging(() => getMessaging()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
