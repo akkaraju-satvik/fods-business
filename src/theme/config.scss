@@ -1,0 +1,67 @@
+@import './variables.scss';
+
+a {
+  cursor: pointer;
+  text-decoration-color: transparent;
+}
+
+#navbar a {
+  cursor: pointer;
+  text-decoration-color: transparent;
+  &:hover {
+    text-decoration-color: $primary;
+    transition: text-decoration 0.3s ease-in-out;
+  }
+}
+
+.btn-secondary {
+  background-color: #fff !important;
+  border-radius: 9px;
+  border-color: $secondary;
+  color: $secondary;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: $secondary !important;
+  border-color: $secondary;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: $primary !important;
+  border-color: $primary;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: $primary !important;
+  border-color: $primary;
+  color: #fff;
+}
+
+.bg-green {
+  background-color: $green !important;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.fadeInFast {
+  animation: fadeInFast 0.5s ease-in-out;
+}
+
+div:has(> div.grecaptcha-badge) {
+  display: none;
+}
+
+@keyframes fadeInFast {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
