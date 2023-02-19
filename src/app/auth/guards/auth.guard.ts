@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (route.data['path'] === 'login') {
       if (this.authService.authData.isLoggedIn) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/business']);
         return false;
       }
       this.authService.authStateSubscription = authState(this.authService.auth).subscribe({
@@ -28,12 +28,18 @@ export class AuthGuard implements CanActivate {
                   console.log(res);
                   this.authService.authData.isLoggedIn = true;
                   this.authService.errorCode = null;
-                  localStorage.setItem('user', JSON.stringify(user));
-                  localStorage.setItem('token', token);
+                  localStorage.setItem('user', JSON.stringify({
+                    ...res.data.user.business,
+                    global_user_id: res.data.user.global_user_id,
+                    email: res.data.user.email,
+                    phone: res.data.user.phone,
+                    profile_picture_url: res.data.user.profile_picture_url,
+                  }));
+                  localStorage.setItem('token', res.data.token);
                   this.authService.checkLoginStatus();
                 },
                 error: (err) => {
-                  this.authService.logout();
+                  this.authService.logout('google-only');
                 }
               });
             }
@@ -41,7 +47,7 @@ export class AuthGuard implements CanActivate {
         },
         error: (error) => {
           console.log(error);
-          this.authService.logout();
+          this.authService.logout('google-only');
         },
       });
     } else {
