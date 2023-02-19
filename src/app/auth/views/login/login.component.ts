@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'business-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
