@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { GeneralService } from 'src/app/general/services/general.service';
+import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
-  selector: 'user-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'business-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
   hamburgerMenuItems: MenuItem[] = [
     {
@@ -35,12 +36,21 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  restaurants: any;
-  getHomeRestaurantsLoad: boolean = false;
+  getDashboardLoad: boolean = false;
+  dashboardData: any;
 
-  constructor(public authService: AuthService, public generalService: GeneralService) { }
+  constructor(public authService: AuthService, public generalService: GeneralService, public dashboardService: DashboardService) { }
 
   ngOnInit(): void {
+    this.dashboardService.getDashboard(this.authService.authData?.user?.business_id).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.dashboardData = response.data;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
 }

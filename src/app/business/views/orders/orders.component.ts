@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { GeneralService } from 'src/app/general/services/general.service';
+import { DashboardService } from '../../services/dashboard.service';
+import { OrdersService } from '../../services/orders.service';
 
 @Component({
-  selector: 'user-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'business-orders',
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class OrdersComponent implements OnInit {
 
   hamburgerMenuItems: MenuItem[] = [
     {
@@ -35,12 +37,13 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  restaurants: any;
-  getHomeRestaurantsLoad: boolean = false;
+  getOrdersLoad: boolean = false;
+  ordersData: any;
 
-  constructor(public authService: AuthService, public generalService: GeneralService) { }
+  constructor(public authService: AuthService, public generalService: GeneralService, public ordersService: OrdersService) { }
 
   ngOnInit(): void {
+    
   }
 
 }

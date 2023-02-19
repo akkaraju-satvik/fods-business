@@ -1,0 +1,9 @@
+<div class="container">
+  <business-navbar [items]="hamburgerMenuItems"></business-navbar>
+  <div class="fadeInFast" *ngIf="!getOrdersLoad">
+  </div>
+  <div *ngIf="getOrdersLoad" class="d-flex justify-content-center align-items-center fadeInFast">
+    <div class="col-6 d-flex justify-content-center align-items-center" style="height: 90vh;">
+      <img src="/assets/search.svg" width="200" class="img-fluid" alt="">
+    </div>
+  </div>

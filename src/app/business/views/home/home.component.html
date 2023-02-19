@@ -1,1 +1,87 @@
-<button (click)="logout()">logout</button>
+<div class="container">
+  <business-navbar [items]="hamburgerMenuItems"></business-navbar>
+  <div class="fadeInFast" *ngIf="!getHomeRestaurantsLoad">
+    <div class="my-5 p-3 px-3 px-lg-5">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="text-xl" style="max-width: 80vw;">Hello, <br /> <span
+            class="text-primary">{{authService.authData.user.business_name}}</span>!</div>
+        <div *ngIf="!generalService.mobileView">
+          <img src="/assets/plate_and_bottles.svg" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="p-3">
+      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center p-3">
+        <!-- Dashboard -->
+        <div routerLink="dashboard" class="col-auto mb-3 me-0 mb-md-0 me-md-5">
+          <div class="placeholder-card d-flex flex-column justify-content-center align-items-center p-3 rounded mb-2"
+            style="background-color: #FF8B00AA">
+            <div>
+              <img src="/assets/dashboard.svg" class="img-fluid" alt="">
+            </div>
+          </div>
+          <div class="text-center">
+            <a class="text-bold text-md text-black">
+              Dashboard
+            </a>
+          </div>
+        </div>
+        <div routerLink="orders" class="col-auto mb-3 me-0 mb-md-0 me-md-5">
+          <div class="placeholder-card d-flex flex-column justify-content-center align-items-center p-3 rounded mb-2"
+            style="background-color: #FF8B00AA">
+            <div>
+              <img src="/assets/orders.svg" class="img-fluid" alt="">
+            </div>
+          </div>
+          <div class="text-center">
+            <a class="text-bold text-md text-black">
+              Orders
+            </a>
+          </div>
+        </div>
+        <div routerLink="menu-items" class="col-auto mb-3 me-0 mb-md-0">
+          <div class="placeholder-card d-flex flex-column justify-content-center align-items-center p-3 rounded mb-2"
+            style="background-color: #FF8B00AA">
+            <div>
+              <img src="/assets/plate_and_bottles.svg" class="img-fluid" alt="">
+            </div>
+          </div>
+          <div class="text-center">
+            <a class="text-bold text-md text-black">
+              Menu Items
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="p-3">
+      <div class="row mb-4">
+        <div class="col-auto redirect-link">
+          <a routerLink="../restaurants" class="text-bold text-md text-black">
+            <span class="me-3">View restaurants</span>
+            <img src="/assets/arrow.svg" width="24" alt="">
+          </a>
+        </div>
+        <div class="col"></div>
+      </div>
+      <div class="d-flex align-items-center overflow-auto p-3">
+        <div class="col-7 col-md-auto mb-5" routerLink="../restaurants">
+          <div class="placeholder-card d-flex flex-column justify-content-center align-items-center rounded mb-2"
+            style="background-color: #FF8B00AA;">
+            <div class="mb-3">
+              <img src="/assets/arrow.svg" alt="">
+            </div>
+            <div class="text-sm text-center">
+              View More
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div> -->
+    </div>
+  </div>
+  <div *ngIf="getHomeRestaurantsLoad" class="d-flex justify-content-center align-items-center fadeInFast">
+    <div class="col-6 d-flex justify-content-center align-items-center" style="height: 90vh;">
+      <img src="/assets/search.svg" width="200" class="img-fluid" alt="">
+    </div>
+  </div>
