@@ -35,17 +35,53 @@ export class DashboardComponent implements OnInit {
       }
     }
   ];
+  
+  orderStatusMap: any = {
+    order_placed: 'Order Placed',
+    order_received: 'Order Received',
+    order_preparing: 'Order Preparing',
+    order_ready: 'Order Ready',
+    picked_up: 'Picked Up',
+    delivered: 'Delivered',
+    cancelled: 'Cancelled'
+  };
 
   getDashboardLoad: boolean = false;
   dashboardData: any;
+  aggregateData: any;
 
   constructor(public authService: AuthService, public generalService: GeneralService, public dashboardService: DashboardService) { }
 
   ngOnInit(): void {
+    this.getDashboardLoad = true;
     this.dashboardService.getDashboard(this.authService.authData?.user?.business_id).subscribe({
       next: (response: any) => {
         console.log(response);
         this.dashboardData = response.data;
+        this.aggregateData = [
+          {
+            title: 'Total Orders',
+            value: this.dashboardData.total_orders
+          },
+          {
+            title: 'Total Revenue',
+            value: `₹${this.dashboardData.total_revenue}`
+          },
+          {
+            title: 'Active Orders',
+            value: this.dashboardData.active_orders
+          },
+          {
+            title: 'Menu Items',
+            value: this.dashboardData.menu_items
+          },
+          {
+            title: 'Avg Rating',
+            value: this.dashboardData.rating
+          }
+        ];
+        console.log(this.aggregateData);
+        this.getDashboardLoad = false;
       },
       error: (error) => {
         console.log(error);

@@ -1,0 +1,28 @@
+<div class="rounded bg-white shadow row align-items-center p-3 mb-3 ">
+  <div class="col">
+    <div class="row">
+      <b class="col-auto text-xs">
+        #{{order.order_id.split('-').pop() | uppercase}}
+      </b>
+    </div>
+    <div class="row">
+      <div class="col-auto text-sm">
+        {{order.number_of_items}} Item{{order.number_of_items > 1 ? 's' : ''}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto text-sm">
+        {{order.created_at | date: 'mediumDate'}} {{order.created_at | date: 'HH:mm'}}
+      </div>
+    </div>
+  </div>
+  <div class="col-auto text-md text-bold mx-4">
+    ₹{{order.amount}}
+  </div>
+  <div class="col-auto text-xs" [ngClass]="order.status_text_color">
+    {{order.order_status_text}}
+  </div>
+  <div class="col-auto">
+    <button pButton label="View Order" [routerLink]="'/business/orders/' + order.order_id + '/order-details'"></button>
+  </div>
+</div>

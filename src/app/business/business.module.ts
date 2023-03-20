@@ -7,6 +7,11 @@ import { GeneralModule } from '../general/general.module';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { OrdersComponent } from './views/orders/orders.component';
 import { MenuItemsComponent } from './views/menu-items/menu-items.component';
+import { PrimengModule } from '../primeng/primeng.module';
+import { OrderCardComponent } from './components/order-card/order-card.component';
+import { StatCardComponent } from './components/stat-card/stat-card.component';
+import { OrderDetailsComponent } from './views/order-details/order-details.component';
+import { MenuItemCardComponent } from './components/menu-item-card/menu-item-card.component';
 
 
 @NgModule({
@@ -14,12 +19,17 @@ import { MenuItemsComponent } from './views/menu-items/menu-items.component';
     HomeComponent,
     DashboardComponent,
     OrdersComponent,
-    MenuItemsComponent
+    MenuItemsComponent,
+    OrderCardComponent,
+    StatCardComponent,
+    OrderDetailsComponent,
+    MenuItemCardComponent
   ],
   imports: [
     CommonModule,
     BusinessRoutingModule,
-    GeneralModule
+    GeneralModule,
+    PrimengModule
   ]
 })
 export class BusinessModule { }
