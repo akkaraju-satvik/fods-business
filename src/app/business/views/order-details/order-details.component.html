@@ -59,7 +59,9 @@
                   Update Order Status
                 </div>
                 <div class="text-md mx-3">
-                  <button pButton label="Accept Order" *ngIf="order.order_status === 'order_placed'"></button>
+                  <button type="button" (click)="updateOrderStatus('order_received')" pButton label="Accept Order" *ngIf="order.order_status === 'order_placed'"></button>
+                  <p-dropdown [disabled]="order.order_status === 'picked_up'" *ngIf="order.order_status !== 'order_placed'" [options]="orderStatuses" [(ngModel)]="orderStatus" optionLabel="label" optionValue="value" class="me-3"></p-dropdown>
+                  <button *ngIf="order.order_status !== 'picked_up' && order.order_status !== 'order_placed'" type="button" pButton label="Update" (click)="updateOrderStatus(orderStatus)"></button>
                 </div>
               </div>
             </div>

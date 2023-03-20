@@ -26,4 +26,16 @@ export class OrdersService {
       }
     })
   }
+
+  updateOrderStatus(order_id: string, order_status: string) {
+    return this.http.put(environment.business_endpoint + '/order/' + order_id, {
+      order_status
+    }, {
+      headers: {
+        'module': 'business',
+        'authorization': 'Bearer ' + localStorage.getItem('token')
+      }
+    })
+  }
+
 }

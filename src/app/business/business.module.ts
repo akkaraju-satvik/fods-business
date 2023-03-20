@@ -12,6 +12,7 @@ import { OrderCardComponent } from './components/order-card/order-card.component
 import { StatCardComponent } from './components/stat-card/stat-card.component';
 import { OrderDetailsComponent } from './views/order-details/order-details.component';
 import { MenuItemCardComponent } from './components/menu-item-card/menu-item-card.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +30,9 @@ import { MenuItemCardComponent } from './components/menu-item-card/menu-item-car
     CommonModule,
     BusinessRoutingModule,
     GeneralModule,
-    PrimengModule
+    PrimengModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class BusinessModule { }
