@@ -1,0 +1,27 @@
+<div class="bg-white shadow p-3 mb-3 rounded d-flex align-items-center justify-content-start cursor">
+  <div *ngIf="!generalService.mobileView" [style]="{'backgroundColor': '#FF8B006F'}"
+    class="rounded placeholder-card-sm d-flex align-items-center">
+    <img width="150" [src]="'/assets/plate_and_bottles.svg'" class="img-fluid rounded">
+  </div>
+  <div class="col" [ngClass]="generalService.mobileView ? '' : 'ms-4'">
+    <div class="text-md text-semi-bold" [ngClass]="menuItem.description ? 'mb-3' : ''">
+      {{menuItem.menu_item_name || menuItem.menu_items.menu_item_name}}
+    </div>
+    <div *ngIf="menuItem.description">
+      {{menuItem.description}}
+    </div>
+  </div>
+  <div class="col">
+    <!-- Add to Cart -->
+    <div class="d-flex align-items-center justify-content-end">
+      <div class="d-flex flex-column align-items-center justify-content-center mx-3">
+        <div class="text-xs text-semi-bold">
+          Quantity
+        </div>
+        <div *ngIf="menuItem.quantity" class="text-sm text-semi-bold mx-3">
+          {{menuItem.quantity || menuItem.menu_items.quantity}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
