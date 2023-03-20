@@ -1,9 +1,27 @@
 <div class="container">
   <business-navbar [items]="hamburgerMenuItems"></business-navbar>
   <div class="fadeInFast" *ngIf="!getOrdersLoad">
+    <div class="row my-5">
+      <div class="text-lg text-semi-bold mb-3">
+        Active Orders
+      </div>
+      <div class="d-flex align-items-center justify-content-start cursor mb-3">
+        <div class="container">
+          <ng-container *ngFor="let order of ordersData">
+            <business-order-card [order]="order"></business-order-card>
+          </ng-container>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-auto">
+          <button pButton label="View All Orders" routerLink="/business/orders"></button>
+        </div>
+      </div>
+    </div>
   </div>
   <div *ngIf="getOrdersLoad" class="d-flex justify-content-center align-items-center fadeInFast">
     <div class="col-6 d-flex justify-content-center align-items-center" style="height: 90vh;">
       <img src="/assets/search.svg" width="200" class="img-fluid" alt="">
     </div>
   </div>
+</div>

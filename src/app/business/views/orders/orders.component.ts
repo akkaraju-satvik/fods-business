@@ -43,7 +43,17 @@ export class OrdersComponent implements OnInit {
   constructor(public authService: AuthService, public generalService: GeneralService, public ordersService: OrdersService) { }
 
   ngOnInit(): void {
-    
+    this.ordersService.getOrders(this.authService.authData?.user?.business_id).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.ordersData = response.data;
+        this.getOrdersLoad = false;
+      },
+      error: (error: any) => {
+        console.log(error);
+        this.getOrdersLoad = false;
+      }
+    });
   }
 
 }
