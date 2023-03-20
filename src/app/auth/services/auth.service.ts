@@ -38,6 +38,8 @@ export class AuthService {
   };
 
   errorCode!: string | null;
+  errorModal!: boolean;
+
 
   authStateSubscription!: Subscription;
 

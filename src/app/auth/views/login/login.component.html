@@ -1,1 +1,25 @@
-<button (click)="loginWithGoogle()">Login With Google</button>
+<div class="container">
+  <business-navbar [items]="hamburgerMenuItems"></business-navbar>
+  <div class="d-flex flex-column align-items-center justify-content-center h-90vh">
+    <img src="/assets/logo.svg" class="img-fluid mb-5" alt="">
+    <div *ngIf="!authService.authData.isLoggedIn">
+      <button (click)="loginWithGoogle()" pButton class="me-3" label="Login"></button>
+    </div>
+    <p-dialog [modal]="true" [draggable]="false" [(visible)]="authService.errorModal" [resizable]="false" [closeOnEscape]="true"
+    [dismissableMask]="true" [style]="{'width': generalService.mobileView ? '90vw' : '30vw'}">
+    <ng-template pTemplate="header">
+      <div class="col text-center">
+        <h4>Error!</h4>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <b>
+        Account Not Found
+      </b>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button (click)="closeModal('signup')" class="btn-secondary px-3 py-1">Cancel</button>
+    </ng-template>
+  </p-dialog>
+  </div>
+</div>

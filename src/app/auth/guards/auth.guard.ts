@@ -37,8 +37,10 @@ export class AuthGuard implements CanActivate {
                   }));
                   localStorage.setItem('token', res.data.token);
                   this.authService.checkLoginStatus();
+                  this.router.navigate(['/business']);
                 },
                 error: (err) => {
+                  this.authService.errorModal = true;
                   this.authService.logout('google-only');
                 }
               });
