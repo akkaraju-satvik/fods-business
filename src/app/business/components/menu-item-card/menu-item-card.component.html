@@ -11,17 +11,21 @@
       {{menuItem.description}}
     </div>
   </div>
-  <div class="col">
+  <div *ngIf="menuItem.quantity" class="col">
     <!-- Add to Cart -->
     <div class="d-flex align-items-center justify-content-end">
       <div class="d-flex flex-column align-items-center justify-content-center mx-3">
         <div class="text-xs text-semi-bold">
           Quantity
         </div>
-        <div *ngIf="menuItem.quantity" class="text-sm text-semi-bold mx-3">
+        <div class="text-sm text-semi-bold mx-3">
           {{menuItem.quantity || menuItem.menu_items.quantity}}
         </div>
       </div>
     </div>
+  </div>
+  <div class="col-auto" *ngIf="type === 'menu-item'">
+    <button pButton label="Update" (click)="openPopupEvent('update')" class="me-3"></button>
+    <button class="btn-secondary" (click)="openPopupEvent('delete')" pButton label="Delete"></button>
   </div>
 </div>

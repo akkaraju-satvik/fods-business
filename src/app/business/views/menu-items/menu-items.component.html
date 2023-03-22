@@ -1,9 +1,87 @@
 <div class="container">
   <business-navbar [items]="hamburgerMenuItems"></business-navbar>
-  <div class="fadeInFast" *ngIf="!getOrdersLoad">
+  <div class="fadeInFast" *ngIf="!menuItemsLoad">
+    <!-- Menu Items -->
+    <div class="row my-5">
+      <div class="col">
+        <div class="text-lg text-semi-bold mb-3">
+          Menu Items
+        </div>
+      </div>
+      <div class="col-auto">
+        <button pButton label="Add Menu Item" (click)="openPopup({type: 'add'})"></button>
+      </div>
+    </div>
+    <div class="row my-5">
+      <ng-container *ngFor="let menu_item of menuItemsData.menu_items">
+        <business-menu-item-card [menuItem]="menu_item" type="menu-item"
+          (openPopup)="openPopup($event)"></business-menu-item-card>
+      </ng-container>
+    </div>
   </div>
-  <div *ngIf="getOrdersLoad" class="d-flex justify-content-center align-items-center fadeInFast">
+  <div *ngIf="menuItemsLoad" class="d-flex justify-content-center align-items-center fadeInFast">
     <div class="col-6 d-flex justify-content-center align-items-center" style="height: 90vh;">
       <img src="/assets/search.svg" width="200" class="img-fluid" alt="">
     </div>
   </div>
+</div>
+
+<p-dialog [modal]="true" [draggable]="false" [(visible)]="updatePopupVisible || addPopupVisible" [resizable]="false" [closeOnEscape]="true"
+  [dismissableMask]="true" [style]="{'width': generalService.mobileView ? '90vw' : '30vw'}">
+
+  <ng-template pTemplate="header">
+    <div class="col text-center">
+      <h4 *ngIf="updatePopupVisible">Update Menu Item</h4>
+      <h4 *ngIf="addPopupVisible">Add Menu Item</h4>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <form [formGroup]="menuItemForm">
+      <div class="d-flex align-items-center mb-3">
+        <label for="menu_item_name" class="col-4 me-3">Menu Item Name</label>
+        <input class="col" type="text" pInputText formControlName="menu_item_name">
+      </div>
+      <div class="d-flex align-items-center mb-3">
+        <label for="available" class="col-4 me-3">Availability</label>
+        <p-dropdown [options]="availablilityDropdown" formControlName="available" appendTo="body" optionLabel="label"
+          optionValue="value"></p-dropdown>
+      </div>
+      <div class="d-flex align-items-center mb-3">
+        <label for="price" class="col-4 me-3">Price (in ₹)</label>
+        <input class="col" type="number" pInputText formControlName="price">
+      </div>
+      <div class="d-flex align-items-center mb-3">
+        <label for="description" class="col-4 me-3">Description</label>
+        <input class="col" type="text" pInputText formControlName="description">
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button (click)="updatePopupVisible = false; addPopupVisible = false;" pButton class="p-button-outlined" label="Cancel"></button>
+    <button (click)="menuItemOperation('update')" *ngIf="updatePopupVisible" pButton label="Update"></button>
+    <button (click)="menuItemOperation('add')" *ngIf="addPopupVisible" pButton label="Add"></button>
+  </ng-template>
+
+</p-dialog>
+
+<p-dialog [modal]="true" [draggable]="false" [(visible)]="deletePopupVisible" [resizable]="false" [closeOnEscape]="true"
+  [dismissableMask]="true" [style]="{'width': generalService.mobileView ? '90vw' : '30vw'}">
+
+  <ng-template pTemplate="header">
+    <div class="col text-center">
+      <h4>Delete Menu Item?</h4>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <p>Are you sure you want to delete this item?</p>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button (click)="deletePopupVisible = false" pButton class="p-button-outlined" label="Cancel"></button>
+    <button (click)="menuItemOperation('delete')" pButton label="Delete"></button>
+  </ng-template>
+
+</p-dialog>

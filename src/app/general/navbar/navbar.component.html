@@ -10,8 +10,8 @@
     </div>
     <div class="d-flex align-items-center">
       <div>
-        <button #btn type="button" pButton icon="pi pi-list" (click)="sideMenu = true"></button>
-        <p-sidebar position="right" [(visible)]="sideMenu">
+        <button #btn type="button" *ngIf="authService.authData.isLoggedIn" pButton icon="pi pi-list" (click)="sideMenu = true"></button>
+        <p-sidebar position="right" *ngIf="authService.authData.isLoggedIn" [(visible)]="sideMenu">
           <div class="row mb-2">
             <div class="col text-lg text-center">
               <span class="text-primary">{{user_name}}</span>

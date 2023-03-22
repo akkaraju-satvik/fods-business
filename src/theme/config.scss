@@ -14,18 +14,18 @@ a {
   }
 }
 
-.btn-secondary {
+.btn-secondary, .btn-secondary:active, .btn-secondary:visited, .btn-secondary:focus, .btn-secondary:enabled {
   background-color: #fff !important;
   border-radius: 9px;
-  border-color: $secondary;
-  color: $secondary;
+  border: 1px solid $secondary !important;
+  color: $secondary !important;
   transition: all 0.3s ease-in-out;
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover, .btn-secondary:active:hover, .btn-secondary:visited:hover, .btn-secondary:focus:hover, .btn-secondary:enabled:hover {
   background-color: $secondary !important;
-  border-color: $secondary;
-  color: #fff;
+  border-color: $secondary !important;
+  color: #fff !important;
 }
 
 .btn-primary {
