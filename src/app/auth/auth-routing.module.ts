@@ -4,7 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, canActivate: [ AuthGuard ], data: { path: 'login' } },
+  { path: '', component: LoginComponent, canActivate: [ AuthGuard ], data: { path: 'login' }, title: 'FODS Business Login' },
 ];
 
 @NgModule({

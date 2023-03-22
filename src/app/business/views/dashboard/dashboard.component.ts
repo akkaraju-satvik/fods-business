@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
           },
           {
             title: 'Total Revenue',
-            value: `₹${this.dashboardData.total_revenue}`
+            value: `₹${this.dashboardData.total_revenue.toFixed(2)}`
           },
           {
             title: 'Active Orders',

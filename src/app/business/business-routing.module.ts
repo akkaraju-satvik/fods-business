@@ -8,11 +8,11 @@ import { OrderDetailsComponent } from './views/order-details/order-details.compo
 import { OrdersComponent } from './views/orders/orders.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard], children: []},
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard]},
-  { path: 'orders/:id/order-details', component: OrderDetailsComponent, canActivate: [AuthGuard]},
-  { path: 'menu-items', component: MenuItemsComponent, canActivate: [AuthGuard]},
+  { path: '', component: HomeComponent, canActivate: [AuthGuard], children: [], title: 'FODS Business | Home'},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], title: 'FODS Business | Dashboard'},
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard], title: 'FODS Business | Orders'},
+  { path: 'orders/:id/order-details', component: OrderDetailsComponent, canActivate: [AuthGuard], title: 'FODS Business | Order Details'},
+  { path: 'menu-items', component: MenuItemsComponent, canActivate: [AuthGuard], title: 'FODS Business | Menu Items'},
 ];
 
 @NgModule({
