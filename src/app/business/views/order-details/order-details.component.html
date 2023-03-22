@@ -40,12 +40,22 @@
               </div>
               <div class="col-6">
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col-12 mb-3">
                     <div class="text-semi-bold">
                       Customer Name
                     </div>
                     <div class="text-md">
                       {{order.users.full_name}}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="text-semi-bold">
+                      Payment Method
+                    </div>
+                    <div class="text-md">
+                      {{order.payment_method === 'pay_at_delivery' ? 'Pay at Delivery' : 'Paid Online'}}
                     </div>
                   </div>
                 </div>
@@ -60,7 +70,11 @@
                 </div>
                 <div class="text-md mx-3">
                   <button type="button" (click)="updateOrderStatus('order_received')" pButton label="Accept Order" *ngIf="order.order_status === 'order_placed'"></button>
-                  <p-dropdown [disabled]="order.order_status === 'picked_up' || order.order_status === 'delivered'" *ngIf="order.order_status !== 'order_placed'" [options]="orderStatuses" [(ngModel)]="orderStatus" optionLabel="label" optionValue="value" class="me-3"></p-dropdown>
+                  <p-dropdown [disabled]="order.order_status === 'picked_up' || order.order_status === 'delivered'"  *ngIf="order.order_status !== 'order_placed'" [options]="orderStatuses" [(ngModel)]="orderStatus" optionLabel="label" optionValue="value" class="me-3">
+                    <ng-template let-option pTemplate="item">
+                      <div *ngIf="option.value !== 'delivered'">{{option.label}}</div>
+                    </ng-template>                  
+                  </p-dropdown>
                   <button *ngIf="order.order_status !== 'picked_up' && order.order_status !== 'order_placed' && order.order_status !== 'delivered'" type="button" pButton label="Update" (click)="updateOrderStatus(orderStatus)"></button>
                 </div>
               </div>
