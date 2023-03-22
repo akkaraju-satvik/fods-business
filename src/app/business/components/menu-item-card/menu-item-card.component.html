@@ -10,6 +10,12 @@
     <div *ngIf="menuItem.description">
       {{menuItem.description}}
     </div>
+    <div class="text-xs text-green" *ngIf="menuItem.availability === true">
+      Available
+    </div>
+    <div class="text-xs text-danger" *ngIf="menuItem.availability === false">
+      Unavailable
+    </div>
   </div>
   <div *ngIf="menuItem.quantity" class="col">
     <!-- Add to Cart -->
