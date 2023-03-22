@@ -28,6 +28,10 @@ export class OrderDetailsComponent {
     {
       label: 'Order Picked Up',
       value: 'picked_up'
+    },
+    {
+      label: 'Delivered',
+      value: 'delivered'
     }
   ]
 
@@ -48,7 +52,7 @@ export class OrderDetailsComponent {
         this.order = response.data;
         this.order.status_text_color = this.order.order_status === 'cancelled' ? 'text-danger' : 'text-success';
         this.order.order_status_text = this.order.order_status.replace(/_/g, ' ');
-        this.orderStatus = this.order.order_status;
+        this.orderStatus = this.order.order_status === 'delivered' ? 'picked_up' : this.order.order_status;
         // order.order_status_text to title case
         this.order.order_status_text = this.order.order_status_text.replace(/\w\S*/g, (txt: any) => {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
