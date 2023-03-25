@@ -3,7 +3,7 @@
   <div class="fadeInFast" *ngIf="!getOrdersLoad">
     <div class="row my-5">
       <div class="text-lg text-semi-bold mb-3">
-        Active Orders
+        Orders
       </div>
       <div class="d-flex align-items-center justify-content-start cursor mb-3">
         <div class="container">
@@ -14,7 +14,7 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="col-auto">
-          <button pButton label="View All Orders" routerLink="/business/orders"></button>
+          <button pButton label="View More" (click)="viewMoreOrders()"></button>
         </div>
       </div>
     </div>

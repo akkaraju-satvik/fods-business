@@ -38,15 +38,30 @@ export class OrdersComponent implements OnInit {
   ];
 
   getOrdersLoad: boolean = false;
-  ordersData: any;
+  ordersData: any = [];
+
+  paginationDetails = {
+    limit: 6,
+    offset: 0,
+  }
+  
 
   constructor(public authService: AuthService, public generalService: GeneralService, public ordersService: OrdersService) { }
 
   ngOnInit(): void {
-    this.ordersService.getOrders(this.authService.authData?.user?.business_id).subscribe({
+    this.getOrders()
+  }
+
+  viewMoreOrders() {
+    this.paginationDetails.offset += this.paginationDetails.limit;
+    this.getOrders();
+  }
+
+  getOrders() {
+    this.ordersService.getOrders(this.authService.authData?.user?.business_id, this.paginationDetails).subscribe({
       next: (response: any) => {
         console.log(response);
-        this.ordersData = response.data;
+        this.ordersData = this.ordersData.concat(response.data);
         this.getOrdersLoad = false;
       },
       error: (error: any) => {

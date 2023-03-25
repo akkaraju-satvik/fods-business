@@ -20,7 +20,7 @@
     ₹{{order.amount}}
   </div>
   <div class="col-auto text-xs" [ngClass]="order.status_text_color">
-    {{order.order_status_text}}
+    {{order.order_status === 'delivered' || order.order_status === 'picked_up' || order.order_status === 'cancelled' ? '' : '⏳'}}  {{order.order_status_text}}
   </div>
   <div class="col-auto">
     <button pButton label="View Order" [routerLink]="'/business/orders/' + order.order_id + '/order-details'"></button>
