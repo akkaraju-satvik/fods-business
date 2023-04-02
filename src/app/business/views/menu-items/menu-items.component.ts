@@ -55,6 +55,8 @@ export class MenuItemsComponent {
     available: new FormControl(true, [Validators.required]),
     description: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
+    available_from: new FormControl('', [Validators.required]),
+    available_until: new FormControl('', [Validators.required]),
   });
 
   constructor(public authService: AuthService, public generalService: GeneralService, public menuItemsService: MenuItemsService) { }
@@ -83,6 +85,8 @@ export class MenuItemsComponent {
         available: event.menuItem.availability,
         description: event.menuItem.description,
         price: event.menuItem.price,
+        available_from: new Date(event.menuItem.available_from),
+        available_until: new Date(event.menuItem.available_until)
       });
       this.currentMenuItem = event?.menuItem?.menu_item_id;
     } else if (event.type === 'delete') {
@@ -102,6 +106,8 @@ export class MenuItemsComponent {
         availability: this.menuItemForm.value.available,
         description: this.menuItemForm.value.description,
         price: this.menuItemForm.value.price,
+        available_from: this.menuItemForm.value.available_from,
+        available_until: this.menuItemForm.value.available_until,
       };
       this.menuItemsService.updateMenuItem(this.currentMenuItem, requestBody).subscribe({
         next: (response: any) => {
@@ -133,6 +139,8 @@ export class MenuItemsComponent {
         availability: this.menuItemForm.value.available,
         description: this.menuItemForm.value.description,
         price: this.menuItemForm.value.price,
+        available_from: this.menuItemForm.value.available_from,
+        available_until: this.menuItemForm.value.available_until,
       };
       this.menuItemsService.addMenuItem(requestBody).subscribe({
         next: (response: any) => {
